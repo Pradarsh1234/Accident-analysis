@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ksp hackathon</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css_styles.css') }}">
+  <style>
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <div class="left-section"></div>
+
+    <div class="middle-section">
+      <ul class="list">
+        <li><a href="#" class="link" onclick="scrollToSection('about-scroll')">About</a></li>
+        <li><a href="#" class="link" onclick="scrollToSection('media')">Media</a></li>
+        <li><a href="#" class="link" onclick="scrollToSection('about-scroll')">News</a></li>
+        <li><a href="#" class="link" onclick="scrollToSection('purchase')">Analysis</a></li>
+        <li><a href="#" class="link" onclick="scrollToSection('contact-us')">Map</a></li>
+        <li><a href="#" class="link" onclick="scrollToSection('contact-us')">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="right-section"></div>
+  </header>
+  <main style="background-image: linear-gradient( 111.4deg,  rgba(238,113,113,1) 1%, rgba(246,215,148,1) 58% );">
+    <div class="video-div">
+    </div>
+    
+    <div class="content">
+        <h2 class="name">ACCIDENT ANALYZER</h2>
+    </div>
+    <div class="container1" id="media">
+      <h1>NEVER STOP</h1>
+      <p style="padding-top: 10px;">Empowering police with ML, our platform analyzes road accidents, victims, and accused data for efficient, data-driven law enforcement.</p>
+    </div>
+    <div class="middle-bar" id="about-scroll">
+      <div class="middle-bar-contents-div">
+        <h1 style="padding-bottom: 10px;">Analysis without limits</h1>
+        <p class="middle-bar-contents" style="font-size: 25px;">Our platform which enables police to swiftly analyze a range of crucial data: from accident details to victim and accused information. With efficiency at its core, law enforcement can make data-driven decisions promptly and effectively.</p>
+        <a href="/prediction" style="text-decoration: none; color: white; display: inline-block;"><div class="anchor" style="width: 400px;">ACCIDENT PROBABLITY</div></a>
+      </div>
+      <div class="about-section" id="purchase">
+        <div class="about-div hidden">
+          <h1>ABOUT US</h1>
+        </div>
+        <div class="about-content-div hidden">
+          <p>Welcome to our revolutionary platform dedicated to road accident analysis using cutting-edge machine learning technology. At our core, we strive to empower law enforcement agencies with comprehensive insights into accident data, victims, and accused individuals</p><br><p> Our mission is to enhance road safety through data-driven decision-making. Leveraging advanced algorithms, we provide in-depth analyses to aid investigations, improve preventative measures, and ultimately save lives.</p>
+        </div>
+      </div>
+      <div>
+        <div  class="news">
+          <h1>ANALYSIS:</h1>
+          <a href="/record_entry" style="text-decoration: none; color: white;"><div class="anchor">ADD RECORDS</div></a>
+        </div>
+        <div class="purchase-div">
+           <a href="/accident_dashboard" style="text-decoration: none; color: white;"><div class="anchor">ACCIDENT DATA</div></a>
+           <a href="/accused_dashboard" style="text-decoration: none; color: white;"><div class="anchor">ACCUSED DATA</div></a>
+           <a href="/victim_dashboard" style="text-decoration: none; color: white;"><div class="anchor">VICTIM DATA</div></a>
+           <a href="/accident_dashboard" style="text-decoration: none; color: white;"><div class="anchor">COMPLAINT DATA</div></a>
+        </div>
+      </div>
+    </div>
+    <footer class="footer" id="contact-us">
+      <div class="community-div">
+        <div style="display: inline-block;">
+          <h1 style="font-size: 40px;">User Feedback</h1>
+          <form id="feedbackForm" action="/feedback" method="post">
+            <label for="feedback" style="font-size: 20px; color: white;">Enter your feedback:</label><br>
+            <input type="text" id="feedback" name="feedback" class="feedback-input" placeholder="feedback"><br><br>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+        </div>
+        
+      </div>
+       <div class="lower-footer">
+        <div class="discription">
+          <p>Contact us through</p>
+        </div>
+        <div class="logo-navigation">
+          <div class="logo-div">
+            <img src="https://img.icons8.com/?size=256&id=bJmWB87nB4hG&format=png">
+            <img src="https://img.icons8.com/?size=256&id=g7SBGFwja0xa&format=png">
+            <img src="https://img.icons8.com/?size=256&id=rvuyWt2dGkYX&format=png">
+            <img src="https://img.icons8.com/?size=256&id=Mk8iYNRHUM8y&format=png">
+          </div>
+          <div class="navigation-div">
+            <ul class="list">
+              <li><a href="#About-us" class="link">About</a></li>
+              <li><a href="#News" class="link">News</a></li>
+              <li><a href="#Purchase" class="link">Analysis</a></li>
+              <li><a href="#Social-Media" class="link">Map</a></li>
+            </ul>
+        </div>
+        </div>
+       </div>
+    </footer>
+  </main>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      let scrollPosition = window.scrollY;
+      let middleBar = document.querySelector('.middle-bar');
+
+      // Move the middle-bar div slightly upwards based on scroll position
+      middleBar.style.transform = `translateY(-${scrollPosition * 0.5}px)`;
+    });
+
+    // After 1 second, start transition for name div
+    setTimeout(function() {
+      document.querySelector('.name').style.opacity = '1';
+        }, 500);
+
+        // After 3 seconds, start transition for container1 div
+        setTimeout(function() {
+          document.querySelector('.container1').style.opacity = '1';
+        }, 1500);
+
+        // First IntersectionObserver
+    const observer1 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        } else {
+          entry.target.classList.remove('show');
+        }
+      });
+    });
+
+    const elements1 = document.querySelectorAll('.hidden');
+    elements1.forEach((el) => observer1.observe(el));
+
+    // Second IntersectionObserver
+    const observer2 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    });
+
+    const elements2 = document.querySelectorAll('.middle-bar-contents-div');
+    elements2.forEach((el) => observer2.observe(el));
+
+    // third intersectionobserver
+    const observer3 = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible2');
+        } else {
+          entry.target.classList.remove('visible2');
+        }
+      });
+    });
+
+    const elements3 = document.querySelectorAll('.purchase-div');
+    elements3.forEach((el) => observer3.observe(el));
+
+    // Function to scroll to section
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Add click event listeners to tabs
+    document.querySelectorAll('.link').forEach(item => {
+      item.addEventListener('click', event => {
+        event.preventDefault();
+        const href = item.getAttribute('href').substring(1); // Remove the # from href
+        scrollToSection(href);
+      });
+    });
+
+  </script>
+</body>
+
+</html>
+

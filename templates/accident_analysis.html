@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ksp hackathon</title>
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            margin:0px;
+            position: relative;
+            background-size: cover;
+            background-color: #00DBDE;
+            background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+            background-attachment: fixed;
+        }
+        .select-div{
+            text-align: center;
+        }
+        /* Center the header */
+        h1 {
+            text-align: center;
+            padding: 10px; /* Add padding for spacing */
+            width: 100%;
+        }
+
+        /* Style the form container */
+        .select-div {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px auto; /* Center the form */
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: black; /* Blue button color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(39, 37, 37); /* Darker blue on hover */
+        }
+
+        /* Style the result display */
+        p {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            
+        }
+        th {
+            background-color: #FAACA8;
+        background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+        /* Light gray background for table headers */
+        }
+
+        .select{
+            width: 250px;
+            height: 50px;
+            text-align: center;
+            font-size: medium;
+            cursor: pointer;
+            color: white;
+            background: black;
+            border-radius: 5px;
+        }
+        .options{
+            color: white;
+            background-color: rgb(48, 47, 47);
+        }
+        .left-select{
+            display: inline-block;
+            width: 30%;
+            margin-right: 50px;
+        }
+        label{
+            color: transparent;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">ACCIDENT DATA ANALYSIS</h1>
+    <div class="select-div">
+    <form method="post">
+        <div class="left-select">
+        <label for="element_name1">Select District name:</label>
+        <select id="element_name1" name="element_name1" class="select">
+            <option value="" disabled selected>DISTRICT NAME</option>
+            {% for option in options_column1 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="element_name2">Select Weather:</label>
+        <select id="element_name2" name="element_name2" class="select">
+            <option value="" disabled selected>WEATHER</option>
+            {% for option in options_column2 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="element_name3">Select Severity:</label>
+        <select id="element_name3" name="element_name3" class="select">
+            <option value="" disabled selected>SEVERITY</option>
+            {% for option in options_column3 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="element_name4">Select Year:</label>
+        <select id="element_name4" name="element_name4" class="select element_name4">
+            <option value="" disabled selected>YEAR</option>
+            {% for option in options_column4 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br>
+        </div>
+        <div style="display: inline-block; width: 30%;">
+        <label for="element_name5">Select Unit name:</label>
+        <select id="element_name5" name="element_name5" class="select">
+            <option value="" disabled selected>UNIT NAME</option>
+            {% for option in options_column5 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="element_name6">Select Accident location:</label>
+        <select id="element_name6" name="element_name6" class="select">
+            <option value="" disabled selected>ACCIDENT LOCATION</option>
+            {% for option in options_column6 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="element_name7">Select Accident SubLocation:</label>
+        <select id="element_name7" name="element_name7" class="select">
+            <option value="" disabled selected>ACCIDENT SUBLOCATION</option>
+            {% for option in options_column7 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="element_name8">Select Hit run:</label>
+        <select id="element_name8" name="element_name8" class="select">
+            <option value="" disabled selected>HIT RUN</option>
+            {% for option in options_column8 %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select><br><br> 
+        </div>
+        </div>
+
+        <button type="submit" style="margin-left: 45%;">SUBMIT</button>
+    </form>
+    {% if filtered_data is not none %}
+        <p>Number of specific records: {{ filtered_data.shape[0] }}</p>
+        <table border="1">
+            <tr>
+                {% for column in filtered_data.columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+            {% for index, row in filtered_data.iterrows() %}
+            <tr>
+                {% for column in filtered_data.columns %}
+                <td>{{ row[column] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>

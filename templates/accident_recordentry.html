@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ksp hackathon</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center content horizontally */
+        min-height: 100vh;
+        position: relative;
+        background-color: #D9AFD9;
+        background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+        background-size: cover; /* Cover the entire background */
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between; /* Align forms to the sides */
+        margin: 20px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+        margin-top: 5vh;
+    }
+
+    .form-container input {
+        border: none; /* Remove borders from input fields */
+        border-bottom: 1px solid #ccc; /* Add bottom border for distinction */
+        background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+
+    .form-container {
+        padding: 0 20px; /* Add padding to both sides */
+        width: 45%; /* Set width for better layout */
+    }
+
+    .form-container.right {
+        padding: 0 20px; /* Add padding to both sides */
+        width: 45%; /* Set width for better layout */
+        
+    }
+
+    .submit-button {
+        margin-top: 20px; /* Add space between forms and button */
+        background-color: #4158D0;
+        background-image: linear-gradient(43deg, #4158D0 0%, #6d1067 46%, #FFCC70 100%);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Smooth transition effect */
+    }
+    .submit-button:hover {
+        background-color: #00DBDE;
+        background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+}
+.parha {
+    font-family: Arial, sans-serif; /* Set font family */
+    font-size: 56px; /* Set font size */
+    line-height: 1.5; /* Set line height for better readability */
+    color: #333; /* Set text color */
+    margin-bottom: 10px; /* Add bottom margin for spacing between paragraphs */
+}
+
+
+    .message {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    }
+</style>
+</head>
+<body>
+    <p class="parha">Report entry</p>
+<div class="container">
+    <div class="form-container">
+        <form id="dataForm">
+            <label for="districtName">DISTRICTNAME:</label><br>
+            <input type="text" id="districtName" name="districtName"><br><br>
+
+            <label for="crimeNo">Crime No:</label><br>
+            <input type="text" id="crimeNo" name="crimeNo"><br><br>
+
+            <label for="year">Year:</label><br>
+            <input type="text" id="year" name="year"><br><br>
+
+            <label for="accidentSubLocation">Accident SubLocation:</label><br>
+            <input type="text" id="accidentSubLocation" name="accidentSubLocation"><br><br>
+
+            <label for="mainCause">Main Cause:</label><br>
+            <input type="text" id="mainCause" name="mainCause"><br><br>
+
+            <label for="hitRun">Hit Run:</label><br>
+            <input type="text" id="hitRun" name="hitRun"><br><br>
+
+            <label for="severity">Severity:</label><br>
+            <input type="text" id="severity" name="severity"><br><br>
+            
+            <!-- Add more form inputs as needed -->
+        </form>
+    </div>
+
+    <div class="form-container right">
+        <form id="additionalForm">
+            <label for="collisionType">Collision Type:</label><br>
+            <input type="text" id="collisionType" name="collisionType"><br><br>
+
+            <label for="roadType">Road Type:</label><br>
+            <input type="text" id="roadType" name="roadType"><br><br>
+
+            <label for="weather">Weather:</label><br>
+            <input type="text" id="weather" name="weather"><br><br>
+
+            <label for="accidentRoad">Accident Road:</label><br>
+            <input type="text" id="accidentRoad" name="accidentRoad"><br><br>
+
+            <label for="distanceLandmark">Distance LandMark:</label><br>
+            <input type="text" id="distanceLandmark" name="distanceLandmark"><br><br>
+
+            <label for="accidentDescription">Accident Description:</label><br>
+            <input type="text" id="accidentDescription" name="accidentDescription"><br><br>
+
+            <label for="latitude">Latitude:</label><br>
+            <input type="text" id="latitude" name="latitude"><br><br>
+
+            <label for="longitude">Longitude:</label><br>
+            <input type="text" id="longitude" name="longitude"><br><br>
+        </form>
+    </div>
+</div>
+
+<button class="submit-button" onclick="submitForm()">Submit</button>
+
+<script>
+    function submitForm() {
+        var message = document.createElement('p');
+        message.textContent = 'Your response has been submitted.';
+        message.classList.add('message');
+        
+        document.body.appendChild(message);
+
+        // Clear form inputs after submission
+        document.getElementById('dataForm').reset();
+        document.getElementById('additionalForm').reset();
+    }
+</script>
+
+</body>
+</html>

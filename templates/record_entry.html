@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ksp hackathon</title>
+	<style>
+		body {
+            font-family: 'Poppins', sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			margin: 0;
+            background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);			
+            transition: background-position 0.5s ease-out;
+		}
+
+		a {
+			background: none;
+			border: none;
+			color: white;
+			padding: 1.5rem 3rem;
+			font-size: 1.2rem;
+			border-radius: 0.5rem;
+			box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+			cursor: pointer;
+			margin: 0 1rem;
+			transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+		}
+
+		a:hover {
+			transform: translateY(-0.5rem);
+			box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+		}
+
+		a:nth-child(1) {
+			background-color: #4CAF50;
+		}
+
+		a:nth-child(2) {
+			background-color: #008CBA;
+		}
+
+		a:nth-child(3) {
+			background-color: #34495E;
+		}
+
+		a:nth-child(4) {
+			background-color: #E74C3C;
+		}
+        button{
+            color: white;
+            font-size: large;
+            border: solid;
+            border-width: 0px; 
+            cursor: pointer;
+        }
+
+		@media (max-width: 768px) {
+			button {
+				padding: 1rem 2rem;
+				font-size: 1rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<a href="/accident_recordentry"><button style="background-color: #4CAF50;">Accident entery</button></a>
+	<a href="/accident_recordentry"><button style="background-color: #008CBA;">Accused entery</button></a>
+	<a href="/accident_recordentry"><button style="background-color: #34495E;">Victim entery</button></a>
+	<a href="/accident_recordentry"><button style="background-color: #E74C3C;">Complaint entery</button></a>
+</body>
+</html>

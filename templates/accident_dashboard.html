@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ksp hackathon</title>
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            margin:0px;
+            position: relative;
+            background-size: cover;
+            /*background-image: url(https://coolbackgrounds.io/images/backgrounds/black/black-trianglify-b6181ec2.jpg);*/
+            background-attachment: fixed;
+            background-color: rgb(44, 42, 42);
+
+        }
+        .select-div{
+            text-align: center;
+        }
+        /* Center the header */
+        h1 {
+            text-align: center;
+            padding: 10px; /* Add padding for spacing */
+            width: 100%;
+        }
+
+        /* Style the form container */
+        .select-div {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px auto; /* Center the form */
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px; 
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            background-color: black;
+            color: #fff;
+        }
+
+        /* Style the result display */
+        p {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+
+        .select{
+            width: 250px;
+            height: 50px;
+            text-align: center;
+            font-size: medium;
+            cursor: pointer;
+            color: white;
+            background: black;
+            border-radius: 5px;
+        }
+        .options{
+            color: white;
+            background-color: rgb(48, 47, 47);
+        }
+        
+        .left-select1{
+            margin-right: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+        .left-select2{
+            margin-right: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+        .right-select1{
+            margin-right: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+        .right-select2{
+            display: flex;
+            flex-direction: column;
+        }
+        label{
+            text-align: left;
+            padding-bottom: 5px;
+        }
+        .form{
+            display: flex;
+            border: 2px solid white;
+            border-radius: 50px;
+            background-color: rgb(27, 27, 27);
+            box-shadow: 5px 5px 20px black;
+            padding: 50px 50px 40px 50px;
+        }
+
+        .bar-graph{
+           display: inline-block;
+        }
+        .pie-chart{
+            display: inline-block;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 100px;
+        }
+        .analyse{
+            border-radius: 60px;
+            border: 2px solid white;
+            background-color: white;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 10px;
+            padding-right: 15px;
+        }
+        .count{
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: rgb(27, 27, 27);
+            box-shadow: 5px 5px 20px black;
+            height: 150px;
+            width: 250px;
+        }
+        .column1-div{
+            display:flex; 
+            justify-content: space-evenly; 
+            gap: 5px; 
+            padding-bottom: 40px;
+        }
+        .column2-div{
+            display: flex; 
+            justify-content: center; 
+            gap: 2%; 
+            padding-bottom: 40px;
+        }
+        .description{
+            font-size:15px;
+            text-align: left; 
+            margin-left: 25px; 
+            text-decoration: underline;
+        }
+        .total-accidents{
+            height:80px; 
+            border: 2px solid white; 
+            width: 80px;
+            border-radius:45px; 
+            display:flex; 
+            align-items: center;
+            justify-content:center;
+            margin-left: 35%;
+        }
+        .view-table-div{
+            color: white;
+            height: 35px; 
+            width: 150px; 
+            border: 2px white solid; 
+            border-radius: 20px; 
+            margin-bottom: 30px; 
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">ACCIDENT DATA ANALYSIS<br> DASHBOARD</h1>
+    <div class="select-div">
+    <form method="post">
+        <div class="form">
+        <div class="left-select1">
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name1">Select District name:</label>
+            <select id="element_name1" name="element_name1" class="select">
+                <option value="" disabled selected>DISTRICT NAME</option>
+                {% for option in options_column1 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name2">Select Weather:</label>
+            <select id="element_name2" name="element_name2" class="select">
+                <option value="" disabled selected>WEATHER</option>
+                {% for option in options_column2 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div>
+        </div>
+        <div class="left-select2">
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name3">Select Severity:</label>
+            <select id="element_name3" name="element_name3" class="select">
+                <option value="" disabled selected>SEVERITY</option>
+                {% for option in options_column3 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name4">Select Year:</label>
+            <select id="element_name4" name="element_name4" class="select element_name4">
+                <option value="" disabled selected>YEAR</option>
+                {% for option in options_column4 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div>
+        </div>
+        <div class="right-select1">
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name5">Select Road Type:</label>
+            <select id="element_name5" name="element_name5" class="select">
+                <option value="" disabled selected>ROAD TYPE</option>
+                {% for option in options_column5 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div>
+            
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name6">Select Accident location:</label>
+            <select id="element_name6" name="element_name6" class="select">
+                <option value="" disabled selected>ACCIDENT LOCATION</option>
+                {% for option in options_column6 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div>
+        </div>
+        <div class="right-select2">
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name7">Select Accident SubLocation:</label>
+            <select id="element_name7" name="element_name7" class="select">
+                <option value="" disabled selected>ACCIDENT SUBLOCATION</option>
+                {% for option in options_column7 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+            <label for="element_name8">Select Hit run:</label>
+            <select id="element_name8" name="element_name8" class="select">
+                <option value="" disabled selected>HIT RUN</option>
+                {% for option in options_column8 %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select><br><br>
+            </div> 
+         </div>   
+        </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <button type="submit" >SUBMIT</button>
+            <a href="/accident_analysis" style="text-decoration: none;"><div class="view-table-div">VIEW TABLE</div></a>
+        </div>
+        
+    </form>
+
+    <!-- Display total number of filtered rows -->
+    <div class="column1-div">
+        <div class="count">
+            <p class="description">Total Accidents:</p>
+            {% if total_filtered_rows > 0 %}
+            <div class="total-accidents">
+                <p>{{ total_filtered_rows }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="count">
+            <p class="description">Vehical type:</p>
+            <div>
+                {% if total_filtered_rows > 0 %}
+                <p style="margin-top: 35px"> Heavy vehical</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="count">
+            <p class="description">Maximum Accident <br>Location:</p>
+            <div>
+                {% if max_occurrence_sublocation %}
+                <p style="margin-bottom: 7px;">{{ max_occurrence_sublocation }}:</p>
+                <p style="margin-top: 0px;"> {{ max_occurrence_count }} accidents</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="solution count" style=" width: 35%;">
+            <p class="description" style="font-size: 20px;">Solution:</p>
+            <div>
+                <!-- Display maximum occurrence of an element in 'Accident_SubLocation' column -->
+                {% if max_occurrence_sublocation is not none %}
+                <p style="padding-left: 20px; padding-right: 20px;">Maximum accidents occur in {{ max_occurrence_sublocation }}, this can be avoided by proper maintance of road and patrolling.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- column 2 -->
+    <div class="column2-div">
+        <div class="count">
+            <p class="description">Pedestrian Accidents:</p>
+            <div>
+                {% if max_occurrence_sublocation is not none %}
+                <p class="total-accidents">{{ no_of_vehicles_involved_count }}</p>
+                {% endif %}
+            </div>       
+        </div>
+         <div class="solution count" style=" width: 35%;">
+            <p class="description" style="font-size: 20px;">Pedestrian Behavior:</p>
+            <div>
+                <!-- Display maximum occurrence of an element in 'Accident_SubLocation' column -->
+                {% if max_occurrence_sublocation is not none %}
+                <p style="padding-left: 20px; padding-right: 20px;">Most of the pedestrian accidents occur due to Jaywalking and not following rules.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="chart-container">
+        <!-- Display the bar graph for Severity Distribution -->
+        {% if severity_graph_html %}
+        <div class="bar-graph analyse" style="width: 30%;">
+            {{ severity_graph_html | safe }}
+        </div>
+        {% endif %}
+
+        <!-- Display the pie chart for Year Distribution -->
+        {% if year_pie_chart_html %}
+        <div class="pie-chart analyse" style="width: 30%;">
+            {{ year_pie_chart_html | safe }}
+        </div>
+        {% endif %}
+
+        <!-- Display the bar graph for Severity Distribution -->
+        {% if Road_Type_graph_html %}
+        <div class="bar-graph analyse" style="width: 30%;">
+            {{ Road_Type_graph_html | safe }}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- tabuleau -->
+    <div class='tableauPlaceholder fixed-height' id='viz1715955709597' style='position: relative;'>
+        <noscript>
+            <a href='#'><img alt='Accident Data Analysis' src='https://public.tableau.com/static/images/ac/accidentanalysis_17157911970820/sample/1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='embed_code_version' value='3' /> 
+            <param name='site_root' value='' />
+            <param name='name' value='accidentanalysis_17157911970820&#47;sample' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/ac/accidentanalysis_17157911970820/sample/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+            <param name='filter' value='publish=yes' />
+        </object>
+    </div>
+    <script type='text/javascript'>
+        var divElement = document.getElementById('viz1715955709597');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        vizElement.style.width='100%';
+        vizElement.style.height='800px'; // Set the desired fixed height
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+
+    
+</body>
+</html>
